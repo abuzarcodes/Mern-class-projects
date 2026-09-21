@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        border-radius: 10px;
+      }
+      .container {
+        background-color: #010101;
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 20px;
+      }
+
+      nav {
+        background-color: red;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row: 1/2;
+      }
+
+      #content_1 {
+        background-color: aqua;
+        grid-column: 2/3;
+        display: flex;
+        grid-row: 2/4;
+      }
+      #content_0 {
+        background-color: aquamarine;
+        grid-column: 2/4;
+        grid-row: 4/6;
+      }
+      #content_2 {
+        background-color: blanchedalmond;
+        grid-column: 3/4;
+        grid-row: 4/6;
+      }
+      #sidebar {
+        background-color: cadetblue;
+        grid-column: 1/2;
+        grid-row: 2/6;
+      }
+      footer {
+        background-color: blueviolet;
+        grid-column: 1/4;
+        grid-row: 6/8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>Navbar</nav>
+      <div id="sidebar">Sidebar</div>
+      <div id="content_0">content 0</div>
+      <div id="content_1">Content 1</div>
+      <div id="content_2">Content 2</div>
+      <footer>Footer</footer>
+    </div>
+  </body>
+</html>

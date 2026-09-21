@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Project Index</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 36px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .number {
+      width: 80px;
+      color: #888;
+    }
+
+    .empty {
+      text-align: center;
+      color: #888;
+      padding: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+    <h1>Project Index</h1>
+
+    <p class="subtitle">
+      A collection of projects and their respective pages.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="number">#</th>
+          <th>Project</th>
+          <th>Path</th>
+        </tr>
+      </thead>
+
+      <tbody id="project-list">
+        <tr>
+          <td colspan="3" class="empty">Loading projects...</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    async function loadProjects() {
+      const list = document.getElementById("project-list");
+
+      try {
+        const response = await fetch("./projects.json");
+
+        if (!response.ok) {
+          throw new Error("Could not load projects.json");
+        }
+
+        const projects = await response.json();
+
+        if (!projects.length) {
+          list.innerHTML = `
+            <tr>
+              <td colspan="3" class="empty">
+                No projects found.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        list.innerHTML = projects
+          .map((project, index) => `
+            <tr>
+              <td class="number">${index + 1}</td>
+
+              <td>
+                <a href="${project.path}">
+                  ${escapeHTML(project.name)}
+                </a>
+              </td>
+
+              <td>
+                <a href="${project.path}">
+                  ${escapeHTML(project.path)}
+                </a>
+              </td>
+            </tr>
+          `)
+          .join("");
+
+      } catch (error) {
+        list.innerHTML = `
+          <tr>
+            <td colspan="3" class="empty">
+              Failed to load projects.
+            </td>
+          </tr>
+        `;
+
+        console.error(error);
+      }
+    }
+
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    loadProjects();
+  </script>
+
+</body>
+</html>
