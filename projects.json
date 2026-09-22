@@ -6,5 +6,9 @@
   {
     "name": "Webpage_layout",
     "path": "./Project_2_Layout/"
+  },
+  {
+    "name":"Bank Management App",
+    "path":"./Project_3_BankManagementSystem/"
   }
 ]
