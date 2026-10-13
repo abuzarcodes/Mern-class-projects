@@ -10,5 +10,13 @@
   {
     "name":"Bank Management App",
     "path":"./Project_3_BankManagementSystem/"
+  },
+  {
+    "name":"Github profile explorer",
+    "path":"./Project_4_githubProfileExplorer/"
+  },
+  {
+    "name":"Weather App",
+    "path":"./project_5_weatherApp/"
   }
 ]
