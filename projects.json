@@ -18,5 +18,9 @@
   {
     "name":"Weather App",
     "path":"./project_5_weatherApp/"
+  },
+  {
+    "name":"E-commerce App",
+    "path":"./React_ECOMM_PROJECT/dist/"
   }
 ]
